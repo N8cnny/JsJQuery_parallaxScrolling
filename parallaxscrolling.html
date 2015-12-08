@@ -1,0 +1,114 @@
+<html>
+<head>
+	<title>Jquery Parallax Scrolling Demo</title><!-- http://blog.themeforest.net/tutorials/create-a-funky-parallax-background-effect-using-jquery-->
+
+    <link rel="stylesheet" type="text/css" href="ps.css">
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2-min.js"></script><!-- https://code.google.com/p/flesler-plugins-->
+    <script type="text/javascript" src="http://www.codefocus.ca/download/jquery.gradienttext-0.1.min.js"></script> <!-- http://www.codefocus.ca/goodies/gradienttext-->
+    <!-- 
+    
+    colors (REQUIRED) - An array of valid HTML colors.
+
+	style - horizontal or vertical. The direction of the gradient.
+
+	shadow - true or false. Whether to render a shadow or not.
+
+	shadow_color - Valid HTML color. The color of the shadow.
+
+	shadow_offset_x - The horizontal offset of the shadow, in pixels.
+
+	shadow_offset_y - The vertical offset of the shadow, in pixels.
+
+	shadow_blur - The blur radius of the shadow.
+
+    -->
+    <script type="text/javascript">
+	var prevOne= "#home"
+	jQuery ( 
+		function() {
+			var speed;
+			$("a.link").click(
+				function() {
+					var currentOne = $(this).attr("href");
+						
+						if(prevOne=="#home" && currentOne=="#faq" || prevOne=="#faq" && currentOne=="#home") {
+							speed= 1200;
+						}
+						
+						else if(prevOne=="#home" && currentOne=="#contact" || prevOne=="#contact" && currentOne=="#home" || prevOne=="#about" && currentOne=="#faq" || prevOne=="#faq" && currentOne=="#about"){
+						speed= 800;
+						}
+						else{
+						speed=500;
+						}
+						prevOne= currentOne;
+						
+						$("#wrapper").scrollTo(currentOne, speed)
+						
+						setPosition(currentOne, "#cloud1");
+				}
+			)
+	function setPosition(hrefVal, cloudID) {
+		if(hrefVal=="#home") {
+			$(cloudID).scrollTo("0px", 800);
+		}
+		
+		else if (hrefVal=="#about") {
+			$(cloudID).scrollTo("400px", 800)
+		}
+		
+		else if(hrefVal=="#contact") {
+			$(cloudID).scrollTo("800px", 800)
+		}
+		else {
+			$(cloudID).scrollTo("1200px", 800)
+		}
+	}
+	});//end of jQuery and master function
+
+
+	</script>
+</head>
+
+<body>
+	<!-- small clouds -->
+	<div id="cloud1" class="clouds">
+    	<div id="clouds-small"></div>
+    </div>
+    <!-- large clouds -->
+    <div id="cloud2" class="clouds">
+        <div id="clouds-big"></div>
+    </div>
+    <!-- contains the Scrolling Clouds text and the buttons -->
+	<div id="header">
+   	<div id="posHeader"><div style="font-size: 72px; font-weight: bold;" id="pageHeader">Scrolling Clouds</div></div>
+    	<ul id="menu">
+       	  <li><a href="#home" class="link selected">Home</a></li>
+            <li><a href="#about" class="link">About</a></li>
+            <li><a href="#contact" class="link">Contact Us</a></li>
+            <li><a href="#faq" class="link">FAQ</a></li>
+      	</ul>
+	</div><!-- end header -->
+    <!-- contains the boxes -->
+	<div id="wrapper">
+    	<ul id="mask">
+        	<li id="home" class="box">
+                <div class="content"><div class="inner">Home</div></div>
+            </li><!-- end Home page box -->
+            <li id="about" class="box">
+           
+                <div class="content"><div class="inner">About Us</div></div>
+            </li><!-- end of Abous Us box -->
+            <li id="contact" class="box">
+            
+                <div class="content"><div class="inner">Contact Us</div></div>
+            </li><!-- end of Contact Us box -->
+            <li id="faq" class="box">
+                <div class="content"><div class="inner">FAQ</div></div>
+            </li><!-- end of FAQ box -->
+        </ul><!-- end mask -->
+    </div><!-- end wrapper -->
+</body>
+</html>
